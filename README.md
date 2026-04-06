@@ -33,7 +33,7 @@
 
 ## 📖 Cos'è TecnoDeposit?
 
-**TecnoDeposit** è una Web Application Java EE di livello enterprise (scolastico/aziendale) nata per snellire, digitalizzare e tracciare l'intero ecosistema di un magazzino moderno. Abbandona i fogli di calcolo disordinati: TecnoDeposit gestisce **articoli**, **fornitori**, **flussi di garanzia** e, soprattutto, introduce un **sistema di richieste materiali** dinamico tra i tecnici e l'amministrazione, con cambi di stato fluenti (In Attesa ➔ Approvata ➔ Spedita ➔ Consegnata).
+**TecnoDeposit** è una Web Application Java EE di livello enterprise nata per snellire, digitalizzare e tracciare l'intero ecosistema di un magazzino moderno. Abbandona i fogli di calcolo disordinati: TecnoDeposit gestisce **articoli**, **fornitori**, **flussi di garanzia** e, soprattutto, introduce un **sistema di richieste materiali** dinamico tra i tecnici e l'amministrazione, con cambi di stato fluenti (In Attesa ➔ Approvata ➔ Spedita ➔ Consegnata).
 
 Pensato per la logistica rapida, il software integra **lettura e stampa di QR Code**, un sistema di **Accesso Totem** tramite token a vita brevissima e un design full-responsive motorizzato Tailwind CSS.
 
@@ -59,6 +59,14 @@ Il progetto segue il classico e solido pattern architetturale **MVC (Model-View-
 - **Librerie Client-side**:
   - `qrcodejs`: Generazione ultra-low-latency di ticket e accessi QR.
   - `jsPDF` / `XLSX.js`: Esportazioni massive di etichette PDF ad alta qualità o database Excel interamente nel browser client (Zero overhead sul server).
+---
+## 🧗‍♂️ Sfide Tecniche e Soluzioni
+
+Durante lo sviluppo di TecnoDeposit, ho dovuto affrontare e risolvere diverse complessità legate all'interazione tra software e hardware di magazzino:
+
+* **Gestione Asincrona della Sicurezza (Token a vita breve):** Per garantire la sicurezza del Totem senza costringere i tecnici a digitare password continue, ho implementato un sistema di login tramite QR-SSO. La sfida era evitare l'accumulo di token scaduti nel database. Ho risolto creando un `TokenCleanupListener` in Java che gira in background e si occupa della logistica automatica e della pulizia periodica, mantenendo il database MySQL sempre leggero e performante.
+* **Digital Scan Hotfix (Incompatibilità Hardware):** I lettori ottici e gli scanner industriali spesso simulano l'input da tastiera. Ho riscontrato che molti scanner economici arrivano pre-configurati con layout di tastiera US, il che generava un parsing errato dei caratteri speciali del QR Code sui sistemi operativi italiani. Ho scritto un middleware in Vanilla JS che intercetta i codici ASCII in ingresso, applica una mappatura correttiva (Hotfix) e ricostruisce la stringa originale prima di inviarla al backend.
+* **Zero-Overhead per le Esportazioni (Client-Side Rendering):** Per evitare di sovraccaricare il server Tomcat durante la generazione massiva di etichette e report Excel, ho spostato interamente il carico di lavoro sul client. Utilizzando `jsPDF` e `XLSX.js`, i dati grezzi ricevuti in JSON vengono renderizzati e scaricati direttamente dal browser dell'utente, mantenendo il server libero di gestire solo le transazioni CRUD.
 
 ---
 
