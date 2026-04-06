@@ -15,8 +15,7 @@
   <p>
     <strong><a href="#-funzionalità-core" style="text-decoration: none;">Funzionalità</a></strong> •
     <strong><a href="#%EF%B8%8F-architettura-e-stack" style="text-decoration: none;">Architettura</a></strong> •
-    <strong><a href="#-ruoli-e-permessi" style="text-decoration: none;">Ruoli</a></strong> •
-    <strong><a href="#-setup-e-configurazione" style="text-decoration: none;">Setup</a></strong>
+    <strong><a href="#-ruoli-e-permessi" style="text-decoration: none;">Ruoli</a></strong> 
   </p>
   
   <div>
