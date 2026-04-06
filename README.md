@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="src/main/webapp/img/Icon.png" alt="TecnoDeposit Logo" width="180" />
+  <img src="Icon.png" alt="TecnoDeposit Logo" width="180" />
   <br /><br />
 
   <h1>📦 TecnoDeposit</h1>
