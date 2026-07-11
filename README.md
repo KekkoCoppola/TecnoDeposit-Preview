@@ -11,7 +11,7 @@
       <img src="https://img.shields.io/badge/LIVE-TECNODEPOSIT.IT-2ea44f?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=1a1a1a" alt="Live Demo" />
     </a>
   </p>
-## 🎬 Demo Live
+
 
 <div align="center">
   <img src="brag.gif" alt="Demo TecnoDeposit" width="800" />
